@@ -61,8 +61,13 @@ var (
 			noCycles:    5,
 			extraCycles: 1,
 		},
-		// 0x02
-		invalidOpcode,
+		// 0x02 - JAM
+		{
+			mnemonic:    "JAM",
+			mode:        implied,
+			noBytes:     1,
+			noCycles:    999,
+		},
 		// 0x03
 		invalidOpcode,
 		// 0x04
