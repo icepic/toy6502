@@ -1042,7 +1042,7 @@ func TestJsr(t *testing.T) {
 		t.Fatalf("invalid low byte %0x", c.memory[0x1ff])
 	}
 	if c.memory[0x1fe] != 0x02 {
-		t.Fatal("invalid high byte %0x", c.memory[0x1fe])
+		t.Fatalf("invalid high byte %0x", c.memory[0x1fe])
 	}
 }
 
