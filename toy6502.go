@@ -2100,7 +2100,7 @@ func (c *CPU) indexedIndirectY(addr uint16, offs byte) uint16 {
 		uint16(offs)
 }
 
-func (c *CPU) ExecuteInstruction() bool {
+func ExecuteInstruction(c *CPU) bool {
 	// decode instruction
 	opcode := c.memory[c.pc]
 	c.cycles += opcodes[opcode].noCycles + opcodes[opcode].extraCycles
