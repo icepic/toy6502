@@ -61,8 +61,13 @@ var (
 			noCycles:    5,
 			extraCycles: 1,
 		},
-		// 0x02
-		invalidOpcode,
+		// 0x02 - JAM
+		{
+			mnemonic:    "JAM",
+			mode:        implied,
+			noBytes:     1,
+			noCycles:    999,
+		},
 		// 0x03
 		invalidOpcode,
 		// 0x04
@@ -141,7 +146,13 @@ var (
 			extraCycles: 1,
 		},
 		// 0x12
-		invalidOpcode,
+		{
+			mnemonic:    "JAM",
+			mode:        implied,
+			noBytes:     1,
+			noCycles:    999,
+		},
+		//		invalidOpcode,
 		// 0x13
 		invalidOpcode,
 		// 0x14
@@ -215,7 +226,13 @@ var (
 			noCycles: 6,
 		},
 		// 0x22
-		invalidOpcode,
+		//		invalidOpcode,
+		{
+			mnemonic:    "JAM",
+			mode:        implied,
+			noBytes:     1,
+			noCycles:    999,
+		},
 		// 0x23
 		invalidOpcode,
 		// 0x24
@@ -304,7 +321,13 @@ var (
 			extraCycles: 1,
 		},
 		// 0x32
-		invalidOpcode,
+		{
+			mnemonic:    "JAM",
+			mode:        implied,
+			noBytes:     1,
+			noCycles:    999,
+		},
+		//		invalidOpcode,
 		// 0x33
 		invalidOpcode,
 		// 0x34
@@ -378,7 +401,13 @@ var (
 			noCycles: 6,
 		},
 		// 0x42
-		invalidOpcode,
+		{
+			mnemonic:    "JAM",
+			mode:        implied,
+			noBytes:     1,
+			noCycles:    999,
+		},
+		//		invalidOpcode,
 		// 0x43
 		invalidOpcode,
 		// 0x44
@@ -462,7 +491,13 @@ var (
 			extraCycles: 1,
 		},
 		// 0x52
-		invalidOpcode,
+		{
+			mnemonic:    "JAM",
+			mode:        implied,
+			noBytes:     1,
+			noCycles:    999,
+		},
+		//		invalidOpcode,
 		// 0x53
 		invalidOpcode,
 		// 0x54
@@ -536,7 +571,13 @@ var (
 			noCycles: 6,
 		},
 		// 0x62
-		invalidOpcode,
+		{
+			mnemonic:    "JAM",
+			mode:        implied,
+			noBytes:     1,
+			noCycles:    999,
+		},
+		//		invalidOpcode,
 		// 0x63
 		invalidOpcode,
 		// 0x64
@@ -620,7 +661,13 @@ var (
 			extraCycles: 1,
 		},
 		// 0x72
-		invalidOpcode,
+		{
+			mnemonic:    "JAM",
+			mode:        implied,
+			noBytes:     1,
+			noCycles:    999,
+		},
+		//		invalidOpcode,
 		// 0x73
 		invalidOpcode,
 		// 0x74
@@ -771,7 +818,13 @@ var (
 			noCycles: 6,
 		},
 		// 0x92
-		invalidOpcode,
+		{
+			mnemonic:    "JAM",
+			mode:        implied,
+			noBytes:     1,
+			noCycles:    999,
+		},
+		//		invalidOpcode,
 		// 0x93
 		invalidOpcode,
 		// 0x94
@@ -942,7 +995,13 @@ var (
 			extraCycles: 1,
 		},
 		// 0xb2
-		invalidOpcode,
+		{
+			mnemonic:    "JAM",
+			mode:        implied,
+			noBytes:     1,
+			noCycles:    999,
+		},
+		//		invalidOpcode,
 		// 0xb3
 		invalidOpcode,
 		// 0xb4
@@ -1080,8 +1139,13 @@ var (
 			noBytes:  1,
 			noCycles: 2,
 		},
-		// 0xcb
-		invalidOpcode,
+		// 0xcb - illegal opcode
+		{
+			mnemonic: "SBX",
+			mode:     implied,
+			noBytes:  2,
+			noCycles: 2,
+		},
 		// 0xcc
 		{
 			mnemonic: "CPY",
@@ -1122,7 +1186,13 @@ var (
 			extraCycles: 1,
 		},
 		// 0xd2
-		invalidOpcode,
+		{
+			mnemonic:    "JAM",
+			mode:        implied,
+			noBytes:     1,
+			noCycles:    999,
+		},
+		//		invalidOpcode,
 		// 0xd3
 		invalidOpcode,
 		// 0xd4
@@ -1284,7 +1354,13 @@ var (
 			noCycles: 5,
 		},
 		// 0xf2
-		invalidOpcode,
+		{
+			mnemonic:    "JAM",
+			mode:        implied,
+			noBytes:     1,
+			noCycles:    999,
+		},
+		//		invalidOpcode,
 		// 0xf3
 		invalidOpcode,
 		// 0xf4
@@ -1684,6 +1760,14 @@ func (c *CPU) sbc(src byte) {
 	}
 }
 
+func (c *CPU) sbx(src byte) {
+	c.x = (c.x & c.a) - src
+	c.evalZ(c.x)
+	c.evalN(c.x)
+	c.evalC(c.x)
+}
+
+
 func (c *CPU) bit(src byte) {
 	// XXX this needs to be optimized to not have garbage
 
@@ -1980,16 +2064,18 @@ func (c *CPU) indexedIndirectY(addr uint16, offs byte) uint16 {
 		uint16(offs)
 }
 
-func (c *CPU) executeInstruction() {
+func (c *CPU) executeInstruction() bool {
 	// decode instruction
 	opcode := c.memory[c.pc]
 	c.cycles += opcodes[opcode].noCycles + opcodes[opcode].extraCycles
 	switch opcode {
 	case 0x00:
 		c.brk()
-		return
+		return true
 	case 0x01:
 		c.ora(c.memory[c.indexedIndirectX(c.pc, c.x)])
+	case 0x02:
+		return false
 	case 0x05:
 		c.ora(c.memory[c.zeroPage(c.pc, 0)])
 	case 0x06:
@@ -2006,10 +2092,12 @@ func (c *CPU) executeInstruction() {
 		c.asl(&c.memory[c.absolute(c.pc, 0)])
 	case 0x10:
 		if c.bpl(c.memory[c.pc+1]) {
-			return
+			return true
 		}
 	case 0x11:
 		c.ora(c.memory[c.indexedIndirectY(c.pc, c.y)])
+	case 0x12:
+		return false
 	case 0x15:
 		c.ora(c.memory[c.zeroPage(c.pc, c.x)])
 	case 0x16:
@@ -2024,9 +2112,11 @@ func (c *CPU) executeInstruction() {
 		c.asl(&c.memory[c.absolute(c.pc, c.x)])
 	case 0x20:
 		c.jsr(c.absolute(c.pc, 0))
-		return
+		return true
 	case 0x21:
 		c.and(c.memory[c.indexedIndirectX(c.pc, c.x)])
+	case 0x22:
+		return false
 	case 0x24:
 		c.bit(c.memory[c.zeroPage(c.pc, 0)])
 	case 0x25:
@@ -2047,10 +2137,12 @@ func (c *CPU) executeInstruction() {
 		c.rol(&c.memory[c.absolute(c.pc, 0)])
 	case 0x30:
 		if c.bmi(c.memory[c.pc+1]) {
-			return
+			return true
 		}
 	case 0x31:
 		c.and(c.memory[c.indexedIndirectY(c.pc, c.y)])
+	case 0x32:
+		return false		
 	case 0x35:
 		c.and(c.memory[c.zeroPage(c.pc, c.x)])
 	case 0x36:
@@ -2065,9 +2157,11 @@ func (c *CPU) executeInstruction() {
 		c.rol(&c.memory[c.absolute(c.pc, c.x)])
 	case 0x40:
 		c.rti()
-		return
+		return true
 	case 0x41:
 		c.eor(c.memory[c.indexedIndirectX(c.pc, c.x)])
+	case 0x42:
+		return false
 	case 0x45:
 		c.eor(c.memory[c.zeroPage(c.pc, 0)])
 	case 0x46:
@@ -2080,17 +2174,19 @@ func (c *CPU) executeInstruction() {
 		c.lsr(&c.a)
 	case 0x4c:
 		c.jmp(c.absolute(c.pc, 0))
-		return
+		return true
 	case 0x4d:
 		c.eor(c.memory[c.absolute(c.pc, 0)])
 	case 0x4e:
 		c.lsr(&c.memory[c.absolute(c.pc, 0)])
 	case 0x50:
 		if c.bvc(c.memory[c.pc+1]) {
-			return
+			return true
 		}
 	case 0x51:
 		c.eor(c.memory[c.indexedIndirectY(c.pc, c.y)])
+	case 0x52:
+		return false
 	case 0x55:
 		c.eor(c.memory[c.zeroPage(c.pc, c.x)])
 	case 0x56:
@@ -2105,9 +2201,11 @@ func (c *CPU) executeInstruction() {
 		c.lsr(&c.memory[c.absolute(c.pc, c.x)])
 	case 0x60:
 		c.rts()
-		return
+		return true
 	case 0x61:
 		c.adc(c.memory[c.indexedIndirectX(c.pc, c.x)])
+	case 0x62:
+		return false
 	case 0x65:
 		c.adc(c.memory[c.zeroPage(c.pc, 0)])
 	case 0x66:
@@ -2120,17 +2218,19 @@ func (c *CPU) executeInstruction() {
 		c.ror(&c.a)
 	case 0x6c:
 		c.jmp(c.indirect(c.pc))
-		return
+		return true
 	case 0x6d:
 		c.adc(c.memory[c.absolute(c.pc, 0)])
 	case 0x6e:
 		c.ror(&c.memory[c.absolute(c.pc, 0)])
 	case 0x70:
 		if c.bvs(c.memory[c.pc+1]) {
-			return
+			return true
 		}
 	case 0x71:
 		c.adc(c.memory[c.indexedIndirectY(c.pc, c.y)])
+	case 0x72:
+		return false
 	case 0x75:
 		c.adc(c.memory[c.zeroPage(c.pc, c.x)])
 	case 0x76:
@@ -2163,10 +2263,12 @@ func (c *CPU) executeInstruction() {
 		c.stx(c.absolute(c.pc, 0))
 	case 0x90:
 		if c.bcc(c.memory[c.pc+1]) {
-			return
+			return true
 		}
 	case 0x91:
 		c.sta(c.indexedIndirectY(c.pc, c.y))
+	case 0x92:
+		return false
 	case 0x94:
 		c.sty(c.zeroPage(c.pc, c.x))
 	case 0x95:
@@ -2207,10 +2309,12 @@ func (c *CPU) executeInstruction() {
 		c.ldx(c.memory[c.absolute(c.pc, 0)])
 	case 0xb0:
 		if c.bcs(c.memory[c.pc+1]) {
-			return
+			return true
 		}
 	case 0xb1:
 		c.lda(c.memory[c.indexedIndirectY(c.pc, c.y)])
+	case 0xb2:
+		return false
 	case 0xb4:
 		c.ldy(c.memory[c.zeroPage(c.pc, c.x)])
 	case 0xb5:
@@ -2245,6 +2349,8 @@ func (c *CPU) executeInstruction() {
 		c.cmp(c.memory[c.immediate(c.pc)])
 	case 0xca:
 		c.dex()
+	case 0xcb:
+		c.sbx(c.memory[c.immediate(c.pc)])
 	case 0xcc:
 		c.cpy(c.memory[c.absolute(c.pc, 0)])
 	case 0xcd:
@@ -2253,10 +2359,12 @@ func (c *CPU) executeInstruction() {
 		c.dec(&c.memory[c.absolute(c.pc, 0)])
 	case 0xd0:
 		if c.bne(c.memory[c.pc+1]) {
-			return
+			return true
 		}
 	case 0xd1:
 		c.cmp(c.memory[c.indexedIndirectY(c.pc, c.y)])
+	case 0xd2:
+		return false
 	case 0xd5:
 		c.cmp(c.memory[c.zeroPage(c.pc, c.x)])
 	case 0xd6:
@@ -2293,10 +2401,12 @@ func (c *CPU) executeInstruction() {
 		c.inc(&c.memory[c.absolute(c.pc, 0)])
 	case 0xf0:
 		if c.beq(c.memory[c.pc+1]) {
-			return
+			return true
 		}
 	case 0xf1:
 		c.sbc(c.memory[c.indexedIndirectY(c.pc, c.y)])
+	case 0xf2:
+		return false
 	case 0xf5:
 		c.sbc(c.memory[c.zeroPage(c.pc, c.x)])
 	case 0xf6:
@@ -2316,6 +2426,7 @@ func (c *CPU) executeInstruction() {
 	}
 
 	c.pc += uint16(opcodes[opcode].noBytes)
+	return true
 }
 
 func (c *CPU) snapshot() string {
