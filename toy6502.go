@@ -1445,6 +1445,38 @@ type CPU struct {
 	memory []byte // memory
 }
 
+func GetMemory(c *CPU) []byte {
+	return c.memory
+}
+
+func GetCycles(c *CPU) uint64 {
+	return c.cycles
+}
+
+func GetPC(c *CPU) uint16 {
+	return c.pc
+}
+
+func GetSP(c *CPU) byte {
+	return c.sp
+}
+
+func GetSR(c *CPU) byte {
+	return c.sr
+}
+
+func GetA(c *CPU) byte {
+	return c.a
+}
+
+func GetX(c *CPU) byte {
+	return c.x
+}
+
+func GetY(c *CPU) byte {
+	return c.y
+}
+
 func New() *CPU {
 	c := CPU{
 		memory: make([]byte, 65536),
@@ -2064,7 +2096,7 @@ func (c *CPU) indexedIndirectY(addr uint16, offs byte) uint16 {
 		uint16(offs)
 }
 
-func (c *CPU) executeInstruction() bool {
+func (c *CPU) ExecuteInstruction() bool {
 	// decode instruction
 	opcode := c.memory[c.pc]
 	c.cycles += opcodes[opcode].noCycles + opcodes[opcode].extraCycles
