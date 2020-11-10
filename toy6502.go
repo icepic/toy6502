@@ -1445,6 +1445,10 @@ type CPU struct {
 	memory []byte // memory
 }
 
+func SetPC(c *CPU, newpc uint16) {
+	c.pc = newpc
+}
+
 func GetMemory(c *CPU) []byte {
 	return c.memory
 }
