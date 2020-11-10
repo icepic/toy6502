@@ -1,4 +1,4 @@
-package main
+package toy6502
 
 import "fmt"
 
@@ -1764,7 +1764,7 @@ func (c *CPU) sbx(src byte) {
 	c.x = (c.x & c.a) - src
 	c.evalZ(c.x)
 	c.evalN(c.x)
-	c.evalC(c.x)
+	//	c.evalC(c.x)
 }
 
 
