@@ -21,7 +21,7 @@ func TestPha(t *testing.T) {
 	if c.pc != 0x1001 {
 		t.Fatalf("unexpected program counter")
 	}
-	d, _ := c.disassemble(0x1000)
+	d, _ := c.Disassemble(0x1000)
 	t.Logf("%v\n", d)
 
 	// test again
@@ -49,7 +49,7 @@ func TestPhp(t *testing.T) {
 	if c.pc != 0x1001 {
 		t.Fatalf("unexpected program counter")
 	}
-	d, _ := c.disassemble(0x1000)
+	d, _ := c.Disassemble(0x1000)
 	t.Logf("%v\n", d)
 
 	// test again
@@ -79,7 +79,7 @@ func TestPlp(t *testing.T) {
 	if c.pc != 0x1001 {
 		t.Fatalf("unexpected program counter")
 	}
-	d, _ := c.disassemble(0x1000)
+	d, _ := c.Disassemble(0x1000)
 	t.Logf("%v\n", d)
 
 	// test again with overflow
@@ -95,7 +95,7 @@ func TestPlp(t *testing.T) {
 	if c.pc != 0x1002 {
 		t.Fatalf("unexpected program counter")
 	}
-	d, _ = c.disassemble(0x1000)
+	d, _ = c.Disassemble(0x1000)
 	t.Logf("%v\n", d)
 }
 
@@ -117,7 +117,7 @@ func TestPla(t *testing.T) {
 	if c.pc != 0x1001 {
 		t.Fatalf("unexpected program counter")
 	}
-	d, _ := c.disassemble(0x1000)
+	d, _ := c.Disassemble(0x1000)
 	t.Logf("%v\n", d)
 
 	// test again with overflow
@@ -133,7 +133,7 @@ func TestPla(t *testing.T) {
 	if c.pc != 0x1002 {
 		t.Fatalf("unexpected program counter")
 	}
-	d, _ = c.disassemble(0x1000)
+	d, _ = c.Disassemble(0x1000)
 	t.Logf("%v\n", d)
 }
 
@@ -157,7 +157,7 @@ func TestOraImmediate(t *testing.T) {
 	if c.sr&Zero == Zero {
 		t.Fatalf("zero unexpected status register %0x", c.sr)
 	}
-	d, _ := c.disassemble(0x1000)
+	d, _ := c.Disassemble(0x1000)
 	t.Logf("%v\n", d)
 
 	// test zero flag
@@ -178,7 +178,7 @@ func TestOraImmediate(t *testing.T) {
 	if c.sr&Zero != Zero {
 		t.Fatalf("zero unexpected status register %0x", c.sr)
 	}
-	d, _ = c.disassemble(0x1000)
+	d, _ = c.Disassemble(0x1000)
 	t.Logf("%v\n", d)
 }
 
@@ -203,7 +203,7 @@ func TestOraZP(t *testing.T) {
 	if c.sr&Zero == Zero {
 		t.Fatalf("zero unexpected status register %0x", c.sr)
 	}
-	d, _ := c.disassemble(0x1000)
+	d, _ := c.Disassemble(0x1000)
 	t.Logf("%v\n", d)
 }
 
@@ -229,7 +229,7 @@ func TestOraZPX(t *testing.T) {
 	if c.sr&Zero == Zero {
 		t.Fatalf("zero unexpected status register %0x", c.sr)
 	}
-	d, _ := c.disassemble(0x1000)
+	d, _ := c.Disassemble(0x1000)
 	t.Logf("%v\n", d)
 }
 
@@ -255,7 +255,7 @@ func TestOraAbsolute(t *testing.T) {
 	if c.sr&Zero == Zero {
 		t.Fatalf("zero unexpected status register %0x", c.sr)
 	}
-	d, _ := c.disassemble(0x1000)
+	d, _ := c.Disassemble(0x1000)
 	t.Logf("%v\n", d)
 }
 
@@ -282,7 +282,7 @@ func TestOraAbsoluteX(t *testing.T) {
 	if c.sr&Zero == Zero {
 		t.Fatalf("zero unexpected status register %0x", c.sr)
 	}
-	d, _ := c.disassemble(0x1000)
+	d, _ := c.Disassemble(0x1000)
 	t.Logf("%v\n", d)
 }
 
@@ -309,7 +309,7 @@ func TestOraAbsoluteY(t *testing.T) {
 	if c.sr&Zero == Zero {
 		t.Fatalf("zero unexpected status register %0x", c.sr)
 	}
-	d, _ := c.disassemble(0x1000)
+	d, _ := c.Disassemble(0x1000)
 	t.Logf("%v\n", d)
 }
 
@@ -339,7 +339,7 @@ func TestOraIndirectX(t *testing.T) {
 	if c.sr&Zero == Zero {
 		t.Fatalf("zero unexpected status register %0x", c.sr)
 	}
-	d, _ := c.disassemble(0x1000)
+	d, _ := c.Disassemble(0x1000)
 	t.Logf("%v\n", d)
 }
 
@@ -369,7 +369,7 @@ func TestOraIndirectY(t *testing.T) {
 	if c.sr&Zero == Zero {
 		t.Fatalf("zero unexpected status register %0x", c.sr)
 	}
-	d, _ := c.disassemble(0x1000)
+	d, _ := c.Disassemble(0x1000)
 	t.Logf("%v\n", d)
 }
 
@@ -395,7 +395,7 @@ func TestAsl(t *testing.T) {
 	if c.sr&Zero == Zero {
 		t.Fatalf("zero unexpected status register %0x", c.sr)
 	}
-	d, _ := c.disassemble(0x1000)
+	d, _ := c.Disassemble(0x1000)
 	t.Logf("%v\n", d)
 }
 
@@ -422,7 +422,7 @@ func TestAslZP(t *testing.T) {
 	if c.sr&Zero == Zero {
 		t.Fatalf("zero unexpected status register %0x", c.sr)
 	}
-	d, _ := c.disassemble(0x1000)
+	d, _ := c.Disassemble(0x1000)
 	t.Logf("%v\n", d)
 }
 
@@ -450,7 +450,7 @@ func TestAslZPX(t *testing.T) {
 	if c.sr&Zero == Zero {
 		t.Fatalf("zero unexpected status register %0x", c.sr)
 	}
-	d, _ := c.disassemble(0x1000)
+	d, _ := c.Disassemble(0x1000)
 	t.Logf("%v\n", d)
 }
 
@@ -478,7 +478,7 @@ func TestAslAbsolute(t *testing.T) {
 	if c.sr&Zero == Zero {
 		t.Fatalf("zero unexpected status register %0x", c.sr)
 	}
-	d, _ := c.disassemble(0x1000)
+	d, _ := c.Disassemble(0x1000)
 	t.Logf("%v\n", d)
 }
 
@@ -507,7 +507,7 @@ func TestAslAbsoluteX(t *testing.T) {
 	if c.sr&Zero == Zero {
 		t.Fatalf("zero unexpected status register %0x", c.sr)
 	}
-	d, _ := c.disassemble(0x1000)
+	d, _ := c.Disassemble(0x1000)
 	t.Logf("%v\n", d)
 }
 
@@ -521,7 +521,7 @@ func TestBpl(t *testing.T) {
 	if c.pc != 0x1008 {
 		t.Fatalf("unexpected program counter %04x", c.pc)
 	}
-	d, _ := c.disassemble(0x1000)
+	d, _ := c.Disassemble(0x1000)
 	t.Logf("%v\n", d)
 
 	// go backwards
@@ -532,7 +532,7 @@ func TestBpl(t *testing.T) {
 	if c.pc != 0x1000-0x04 {
 		t.Fatalf("unexpected program counter %04x", c.pc)
 	}
-	d, _ = c.disassemble(0x1000)
+	d, _ = c.Disassemble(0x1000)
 	t.Logf("%v\n", d)
 
 	// don't branch
@@ -544,7 +544,7 @@ func TestBpl(t *testing.T) {
 	if c.pc != 0x1002 {
 		t.Fatalf("unexpected program counter %04x", c.pc)
 	}
-	d, _ = c.disassemble(0x1000)
+	d, _ = c.Disassemble(0x1000)
 	t.Logf("%v\n", d)
 }
 
@@ -559,7 +559,7 @@ func TestBmi(t *testing.T) {
 	if c.pc != 0x1008 {
 		t.Fatalf("unexpected program counter %04x", c.pc)
 	}
-	d, _ := c.disassemble(0x1000)
+	d, _ := c.Disassemble(0x1000)
 	t.Logf("%v\n", d)
 
 	// go backwards
@@ -570,7 +570,7 @@ func TestBmi(t *testing.T) {
 	if c.pc != 0x1000-0x04 {
 		t.Fatalf("unexpected program counter %04x", c.pc)
 	}
-	d, _ = c.disassemble(0x1000)
+	d, _ = c.Disassemble(0x1000)
 	t.Logf("%v\n", d)
 
 	// don't branch
@@ -582,7 +582,7 @@ func TestBmi(t *testing.T) {
 	if c.pc != 0x1002 {
 		t.Fatalf("unexpected program counter %04x", c.pc)
 	}
-	d, _ = c.disassemble(0x1000)
+	d, _ = c.Disassemble(0x1000)
 	t.Logf("%v\n", d)
 }
 
@@ -596,7 +596,7 @@ func TestBvc(t *testing.T) {
 	if c.pc != 0x1008 {
 		t.Fatalf("unexpected program counter %04x", c.pc)
 	}
-	d, _ := c.disassemble(0x1000)
+	d, _ := c.Disassemble(0x1000)
 	t.Logf("%v\n", d)
 
 	// go backwards
@@ -607,7 +607,7 @@ func TestBvc(t *testing.T) {
 	if c.pc != 0x1000-0x04 {
 		t.Fatalf("unexpected program counter %04x", c.pc)
 	}
-	d, _ = c.disassemble(0x1000)
+	d, _ = c.Disassemble(0x1000)
 	t.Logf("%v\n", d)
 
 	// don't branch
@@ -619,7 +619,7 @@ func TestBvc(t *testing.T) {
 	if c.pc != 0x1002 {
 		t.Fatalf("unexpected program counter %04x", c.pc)
 	}
-	d, _ = c.disassemble(0x1000)
+	d, _ = c.Disassemble(0x1000)
 	t.Logf("%v\n", d)
 }
 
@@ -633,7 +633,7 @@ func TestBcc(t *testing.T) {
 	if c.pc != 0x1008 {
 		t.Fatalf("unexpected program counter %04x", c.pc)
 	}
-	d, _ := c.disassemble(0x1000)
+	d, _ := c.Disassemble(0x1000)
 	t.Logf("%v\n", d)
 
 	// go backwards
@@ -644,7 +644,7 @@ func TestBcc(t *testing.T) {
 	if c.pc != 0x1000-0x04 {
 		t.Fatalf("unexpected program counter %04x", c.pc)
 	}
-	d, _ = c.disassemble(0x1000)
+	d, _ = c.Disassemble(0x1000)
 	t.Logf("%v\n", d)
 
 	// don't branch
@@ -656,7 +656,7 @@ func TestBcc(t *testing.T) {
 	if c.pc != 0x1002 {
 		t.Fatalf("unexpected program counter %04x", c.pc)
 	}
-	d, _ = c.disassemble(0x1000)
+	d, _ = c.Disassemble(0x1000)
 	t.Logf("%v\n", d)
 }
 
@@ -671,7 +671,7 @@ func TestBvs(t *testing.T) {
 	if c.pc != 0x1008 {
 		t.Fatalf("unexpected program counter %04x", c.pc)
 	}
-	d, _ := c.disassemble(0x1000)
+	d, _ := c.Disassemble(0x1000)
 	t.Logf("%v\n", d)
 
 	// go backwards
@@ -683,7 +683,7 @@ func TestBvs(t *testing.T) {
 	if c.pc != 0x1000-0x04 {
 		t.Fatalf("unexpected program counter %04x", c.pc)
 	}
-	d, _ = c.disassemble(0x1000)
+	d, _ = c.Disassemble(0x1000)
 	t.Logf("%v\n", d)
 
 	// don't branch
@@ -696,7 +696,7 @@ func TestBvs(t *testing.T) {
 	if c.pc != 0x1002 {
 		t.Fatalf("unexpected program counter %04x", c.pc)
 	}
-	d, _ = c.disassemble(0x1000)
+	d, _ = c.Disassemble(0x1000)
 	t.Logf("%v\n", d)
 }
 
@@ -711,7 +711,7 @@ func TestBcs(t *testing.T) {
 	if c.pc != 0x1008 {
 		t.Fatalf("unexpected program counter %04x", c.pc)
 	}
-	d, _ := c.disassemble(0x1000)
+	d, _ := c.Disassemble(0x1000)
 	t.Logf("%v\n", d)
 
 	// go backwards
@@ -723,7 +723,7 @@ func TestBcs(t *testing.T) {
 	if c.pc != 0x1000-0x04 {
 		t.Fatalf("unexpected program counter %04x", c.pc)
 	}
-	d, _ = c.disassemble(0x1000)
+	d, _ = c.Disassemble(0x1000)
 	t.Logf("%v\n", d)
 
 	// don't branch
@@ -736,7 +736,7 @@ func TestBcs(t *testing.T) {
 	if c.pc != 0x1002 {
 		t.Fatalf("unexpected program counter %04x", c.pc)
 	}
-	d, _ = c.disassemble(0x1000)
+	d, _ = c.Disassemble(0x1000)
 	t.Logf("%v\n", d)
 }
 
@@ -751,7 +751,7 @@ func TestBeq2(t *testing.T) {
 	if c.pc != 0x0307 {
 		t.Fatalf("unexpected program counter %04x", c.pc)
 	}
-	d, _ := c.disassemble(0x0300)
+	d, _ := c.Disassemble(0x0300)
 	t.Logf("%v\n", d)
 
 	c.pc = 0x0300
@@ -762,7 +762,7 @@ func TestBeq2(t *testing.T) {
 	if c.pc != 0x0302 {
 		t.Fatalf("unexpected program counter %04x", c.pc)
 	}
-	d, _ = c.disassemble(0x0300)
+	d, _ = c.Disassemble(0x0300)
 	t.Logf("%v\n", d)
 
 	c.pc = 0x0300
@@ -773,7 +773,7 @@ func TestBeq2(t *testing.T) {
 	if c.pc != 0x02fd {
 		t.Fatalf("unexpected program counter %04x", c.pc)
 	}
-	d, _ = c.disassemble(0x0300)
+	d, _ = c.Disassemble(0x0300)
 	t.Logf("%v\n", d)
 
 	c.pc = 0x0300
@@ -784,7 +784,7 @@ func TestBeq2(t *testing.T) {
 	if c.pc != 0x0302 {
 		t.Fatalf("unexpected program counter %04x", c.pc)
 	}
-	d, _ = c.disassemble(0x0300)
+	d, _ = c.Disassemble(0x0300)
 	t.Logf("%v\n", d)
 }
 
@@ -799,7 +799,7 @@ func TestBeq(t *testing.T) {
 	if c.pc != 0x1008 {
 		t.Fatalf("unexpected program counter %04x", c.pc)
 	}
-	d, _ := c.disassemble(0x1000)
+	d, _ := c.Disassemble(0x1000)
 	t.Logf("%v\n", d)
 
 	// go backwards
@@ -811,7 +811,7 @@ func TestBeq(t *testing.T) {
 	if c.pc != 0x1000-0x04 {
 		t.Fatalf("unexpected program counter %04x", c.pc)
 	}
-	d, _ = c.disassemble(0x1000)
+	d, _ = c.Disassemble(0x1000)
 	t.Logf("%v\n", d)
 
 	// don't branch
@@ -824,7 +824,7 @@ func TestBeq(t *testing.T) {
 	if c.pc != 0x1002 {
 		t.Fatalf("unexpected program counter %04x", c.pc)
 	}
-	d, _ = c.disassemble(0x1000)
+	d, _ = c.Disassemble(0x1000)
 	t.Logf("%v\n", d)
 }
 
@@ -838,7 +838,7 @@ func TestBne(t *testing.T) {
 	if c.pc != 0x1008 {
 		t.Fatalf("unexpected program counter %04x", c.pc)
 	}
-	d, _ := c.disassemble(0x1000)
+	d, _ := c.Disassemble(0x1000)
 	t.Logf("%v\n", d)
 
 	// go backwards
@@ -850,7 +850,7 @@ func TestBne(t *testing.T) {
 	if c.pc != 0x1000-0x04 {
 		t.Fatalf("unexpected program counter %04x", c.pc)
 	}
-	d, _ = c.disassemble(0x1000)
+	d, _ = c.Disassemble(0x1000)
 	t.Logf("%v\n", d)
 
 	// don't branch
@@ -863,7 +863,7 @@ func TestBne(t *testing.T) {
 	if c.pc != 0x1002 {
 		t.Fatalf("unexpected program counter %04x", c.pc)
 	}
-	d, _ = c.disassemble(0x1000)
+	d, _ = c.Disassemble(0x1000)
 	t.Logf("%v\n", d)
 }
 
@@ -878,7 +878,7 @@ func TestBne2(t *testing.T) {
 	if c.pc != 0x1002 {
 		t.Fatalf("unexpected program counter %04x", c.pc)
 	}
-	d, _ := c.disassemble(0x1000)
+	d, _ := c.Disassemble(0x1000)
 	t.Logf("%v\n", d)
 
 	// no zero
@@ -890,7 +890,7 @@ func TestBne2(t *testing.T) {
 	if c.pc != 0x1007 {
 		t.Fatalf("unexpected program counter %04x", c.pc)
 	}
-	d, _ = c.disassemble(0x1000)
+	d, _ = c.Disassemble(0x1000)
 	t.Logf("%v\n", d)
 
 	// backwards zero set
@@ -903,7 +903,7 @@ func TestBne2(t *testing.T) {
 	if c.pc != 0x1002 {
 		t.Fatalf("unexpected program counter %04x", c.pc)
 	}
-	d, _ = c.disassemble(0x1000)
+	d, _ = c.Disassemble(0x1000)
 	t.Logf("%v\n", d)
 
 	// backwards zero not set
@@ -915,7 +915,7 @@ func TestBne2(t *testing.T) {
 	if c.pc != 0x0ffd {
 		t.Fatalf("unexpected program counter %04x", c.pc)
 	}
-	d, _ = c.disassemble(0x1000)
+	d, _ = c.Disassemble(0x1000)
 	t.Logf("%v\n", d)
 }
 
@@ -932,7 +932,7 @@ func TestSed(t *testing.T) {
 	if c.sr&BCD != BCD {
 		t.Fatalf("carry unexpected status register %0x", c.sr)
 	}
-	d, _ := c.disassemble(0x1000)
+	d, _ := c.Disassemble(0x1000)
 	t.Logf("%v\n", d)
 }
 
@@ -949,7 +949,7 @@ func TestSei(t *testing.T) {
 	if c.sr&Interrupts != Interrupts {
 		t.Fatalf("carry unexpected status register %0x", c.sr)
 	}
-	d, _ := c.disassemble(0x1000)
+	d, _ := c.Disassemble(0x1000)
 	t.Logf("%v\n", d)
 }
 
@@ -966,7 +966,7 @@ func TestCld(t *testing.T) {
 	if c.sr&BCD == BCD {
 		t.Fatalf("carry unexpected status register %0x", c.sr)
 	}
-	d, _ := c.disassemble(0x1000)
+	d, _ := c.Disassemble(0x1000)
 	t.Logf("%v\n", d)
 }
 
@@ -983,7 +983,7 @@ func TestClc(t *testing.T) {
 	if c.sr&Carry == Carry {
 		t.Fatalf("carry unexpected status register %0x", c.sr)
 	}
-	d, _ := c.disassemble(0x1000)
+	d, _ := c.Disassemble(0x1000)
 	t.Logf("%v\n", d)
 }
 
@@ -1000,7 +1000,7 @@ func TestCli(t *testing.T) {
 	if c.sr&Interrupts == Interrupts {
 		t.Fatalf("carry unexpected status register %0x", c.sr)
 	}
-	d, _ := c.disassemble(0x1000)
+	d, _ := c.Disassemble(0x1000)
 	t.Logf("%v\n", d)
 }
 
@@ -1017,7 +1017,7 @@ func TestClv(t *testing.T) {
 	if c.sr&Overflow == Overflow {
 		t.Fatalf("carry unexpected status register %0x", c.sr)
 	}
-	d, _ := c.disassemble(0x1000)
+	d, _ := c.Disassemble(0x1000)
 	t.Logf("%v\n", d)
 }
 
@@ -1032,7 +1032,7 @@ func TestJsr(t *testing.T) {
 	if c.pc != 0x1234 {
 		t.Fatalf("unexpected program counter %04x", c.pc)
 	}
-	d, _ := c.disassemble(0x0300)
+	d, _ := c.Disassemble(0x0300)
 	t.Logf("%v\n", d)
 	if c.sp != 0xfd {
 		t.Fatalf("unexpected sp %02x", c.sp)
@@ -1057,7 +1057,7 @@ func TestJmp(t *testing.T) {
 	if c.pc != 0x4030 {
 		t.Fatalf("unexpected program counter %04x", c.pc)
 	}
-	d, _ := c.disassemble(0x1000)
+	d, _ := c.Disassemble(0x1000)
 	t.Logf("%v\n", d)
 }
 
@@ -1074,7 +1074,7 @@ func TestJmpIndirect(t *testing.T) {
 	if c.pc != 0xf0b0 {
 		t.Fatalf("unexpected program counter %04x", c.pc)
 	}
-	d, _ := c.disassemble(0x1000)
+	d, _ := c.Disassemble(0x1000)
 	t.Logf("%v\n", d)
 }
 
@@ -1104,7 +1104,7 @@ func TestAndIndirectX(t *testing.T) {
 	if c.sr&Zero == Zero {
 		t.Fatalf("zero unexpected status register %0x", c.sr)
 	}
-	d, _ := c.disassemble(0x1000)
+	d, _ := c.Disassemble(0x1000)
 	t.Logf("%v\n", d)
 }
 
@@ -1129,7 +1129,7 @@ func TestAndZP(t *testing.T) {
 	if c.sr&Zero != Zero {
 		t.Fatalf("zero unexpected status register %0x", c.sr)
 	}
-	d, _ := c.disassemble(0x1000)
+	d, _ := c.Disassemble(0x1000)
 	t.Logf("%v\n", d)
 }
 
@@ -1153,7 +1153,7 @@ func TestAndImmediate(t *testing.T) {
 	if c.sr&Zero != Zero {
 		t.Fatalf("zero unexpected status register %0x", c.sr)
 	}
-	d, _ := c.disassemble(0x1000)
+	d, _ := c.Disassemble(0x1000)
 	t.Logf("%v\n", d)
 }
 
@@ -1179,7 +1179,7 @@ func TestAndAbsolute(t *testing.T) {
 	if c.sr&Zero != Zero {
 		t.Fatalf("zero unexpected status register %0x", c.sr)
 	}
-	d, _ := c.disassemble(0x1000)
+	d, _ := c.Disassemble(0x1000)
 	t.Logf("%v\n", d)
 }
 
@@ -1209,7 +1209,7 @@ func TestAndIndirectY(t *testing.T) {
 	if c.sr&Zero != Zero {
 		t.Fatalf("zero unexpected status register %0x", c.sr)
 	}
-	d, _ := c.disassemble(0x1000)
+	d, _ := c.Disassemble(0x1000)
 	t.Logf("%v\n", d)
 }
 
@@ -1235,7 +1235,7 @@ func TestAndZPX(t *testing.T) {
 	if c.sr&Zero != Zero {
 		t.Fatalf("zero unexpected status register %0x", c.sr)
 	}
-	d, _ := c.disassemble(0x1000)
+	d, _ := c.Disassemble(0x1000)
 	t.Logf("%v\n", d)
 }
 
@@ -1262,7 +1262,7 @@ func TestAndAbsoluteY(t *testing.T) {
 	if c.sr&Zero != Zero {
 		t.Fatalf("zero unexpected status register %0x", c.sr)
 	}
-	d, _ := c.disassemble(0x1000)
+	d, _ := c.Disassemble(0x1000)
 	t.Logf("%v\n", d)
 }
 
@@ -1289,7 +1289,7 @@ func TestAndAbsoluteX(t *testing.T) {
 	if c.sr&Zero != Zero {
 		t.Fatalf("zero unexpected status register %0x", c.sr)
 	}
-	d, _ := c.disassemble(0x1000)
+	d, _ := c.Disassemble(0x1000)
 	t.Logf("%v\n", d)
 }
 
@@ -1317,7 +1317,7 @@ func TestBitZP(t *testing.T) {
 	if c.sr&Zero != Zero {
 		t.Fatalf("zero unexpected status register %0x", c.sr)
 	}
-	d, _ := c.disassemble(0x1000)
+	d, _ := c.Disassemble(0x1000)
 	t.Logf("%v\n", d)
 
 	// test unset
@@ -1342,7 +1342,7 @@ func TestBitZP(t *testing.T) {
 	if c.sr&Zero == Zero {
 		t.Fatalf("zero unexpected status register %0x", c.sr)
 	}
-	d, _ = c.disassemble(0x1000)
+	d, _ = c.Disassemble(0x1000)
 	t.Logf("%v\n", d)
 }
 
@@ -1371,7 +1371,7 @@ func TestBitAbsolute(t *testing.T) {
 	if c.sr&Zero == Zero {
 		t.Fatalf("zero unexpected status register %0x", c.sr)
 	}
-	d, _ := c.disassemble(0x1000)
+	d, _ := c.Disassemble(0x1000)
 	t.Logf("%v\n", d)
 }
 
@@ -1399,7 +1399,7 @@ func TestRolZP(t *testing.T) {
 	if c.sr&Carry == Carry {
 		t.Fatalf("carry unexpected status register %0x", c.sr)
 	}
-	d, _ := c.disassemble(0x1000)
+	d, _ := c.Disassemble(0x1000)
 	t.Logf("%v\n", d)
 
 	// test 0
@@ -1424,7 +1424,7 @@ func TestRolZP(t *testing.T) {
 	if c.sr&Carry == Carry {
 		t.Fatalf("carry unexpected status register %0x", c.sr)
 	}
-	d, _ = c.disassemble(0x1000)
+	d, _ = c.Disassemble(0x1000)
 	t.Logf("%v\n", d)
 
 	// test carry
@@ -1449,7 +1449,7 @@ func TestRolZP(t *testing.T) {
 	if c.sr&Carry != Carry {
 		t.Fatalf("carry unexpected status register %0x", c.sr)
 	}
-	d, _ = c.disassemble(0x1000)
+	d, _ = c.Disassemble(0x1000)
 	t.Logf("%v\n", d)
 }
 
@@ -1476,7 +1476,7 @@ func TestRol(t *testing.T) {
 	if c.sr&Carry == Carry {
 		t.Fatalf("carry unexpected status register %0x", c.sr)
 	}
-	d, _ := c.disassemble(0x1000)
+	d, _ := c.Disassemble(0x1000)
 	t.Logf("%v\n", d)
 }
 
@@ -1505,7 +1505,7 @@ func TestRolAbsolute(t *testing.T) {
 	if c.sr&Carry == Carry {
 		t.Fatalf("carry unexpected status register %0x", c.sr)
 	}
-	d, _ := c.disassemble(0x1000)
+	d, _ := c.Disassemble(0x1000)
 	t.Logf("%v\n", d)
 }
 
@@ -1534,7 +1534,7 @@ func TestRolZPX(t *testing.T) {
 	if c.sr&Carry == Carry {
 		t.Fatalf("carry unexpected status register %0x", c.sr)
 	}
-	d, _ := c.disassemble(0x1000)
+	d, _ := c.Disassemble(0x1000)
 	t.Logf("%v\n", d)
 }
 
@@ -1564,7 +1564,7 @@ func TestRolAbsoluteX(t *testing.T) {
 	if c.sr&Carry == Carry {
 		t.Fatalf("carry unexpected status register %0x", c.sr)
 	}
-	d, _ := c.disassemble(0x1000)
+	d, _ := c.Disassemble(0x1000)
 	t.Logf("%v\n", d)
 }
 
@@ -1580,7 +1580,7 @@ func TestSec(t *testing.T) {
 	if c.sr&Carry != Carry {
 		t.Fatalf("carry unexpected status register %0x", c.sr)
 	}
-	d, _ := c.disassemble(0x1000)
+	d, _ := c.Disassemble(0x1000)
 	t.Logf("%v\n", d)
 }
 
@@ -1603,7 +1603,7 @@ func TestRti(t *testing.T) {
 	if c.sp != 0xff {
 		t.Fatalf("unexpected sp %0x", c.sp)
 	}
-	d, _ := c.disassemble(0x0300)
+	d, _ := c.Disassemble(0x0300)
 	t.Logf("%v\n", d)
 }
 
@@ -1623,7 +1623,7 @@ func TestRts(t *testing.T) {
 	if c.sr&Break != Break {
 		t.Fatalf("unexpected status register %0x", c.sr)
 	}
-	d, _ := c.disassemble(0x0300)
+	d, _ := c.Disassemble(0x0300)
 	t.Logf("%v\n", d)
 }
 
@@ -1656,7 +1656,7 @@ func TestBrk(t *testing.T) {
 	if c.memory[0x1fd] != status {
 		t.Fatalf("unexpected sr on stack %0x != %0x", c.memory[0x1fd], status)
 	}
-	d, _ := c.disassemble(0x300)
+	d, _ := c.Disassemble(0x300)
 	t.Logf("%v\n", d)
 }
 
@@ -1686,7 +1686,7 @@ func TestEorIndirectX(t *testing.T) {
 	if c.sr&Zero == Zero {
 		t.Fatalf("zero unexpected status register %0x", c.sr)
 	}
-	d, _ := c.disassemble(0x1000)
+	d, _ := c.Disassemble(0x1000)
 	t.Logf("%v\n", d)
 }
 
@@ -1711,7 +1711,7 @@ func TestEorZP(t *testing.T) {
 	if c.sr&Zero == Zero {
 		t.Fatalf("zero unexpected status register %0x", c.sr)
 	}
-	d, _ := c.disassemble(0x1000)
+	d, _ := c.Disassemble(0x1000)
 	t.Logf("%v\n", d)
 }
 
@@ -1735,7 +1735,7 @@ func TestEorImmediate(t *testing.T) {
 	if c.sr&Zero == Zero {
 		t.Fatalf("zero unexpected status register %0x", c.sr)
 	}
-	d, _ := c.disassemble(0x1000)
+	d, _ := c.Disassemble(0x1000)
 	t.Logf("%v\n", d)
 }
 
@@ -1761,7 +1761,7 @@ func TestEorAbsolute(t *testing.T) {
 	if c.sr&Zero == Zero {
 		t.Fatalf("zero unexpected status register %0x", c.sr)
 	}
-	d, _ := c.disassemble(0x1000)
+	d, _ := c.Disassemble(0x1000)
 	t.Logf("%v\n", d)
 }
 
@@ -1791,7 +1791,7 @@ func TestEorIndirectY(t *testing.T) {
 	if c.sr&Zero == Zero {
 		t.Fatalf("zero unexpected status register %0x", c.sr)
 	}
-	d, _ := c.disassemble(0x1000)
+	d, _ := c.Disassemble(0x1000)
 	t.Logf("%v\n", d)
 }
 
@@ -1818,7 +1818,7 @@ func TestEorAbsoluteY(t *testing.T) {
 	if c.sr&Zero == Zero {
 		t.Fatalf("zero unexpected status register %0x", c.sr)
 	}
-	d, _ := c.disassemble(0x1000)
+	d, _ := c.Disassemble(0x1000)
 	t.Logf("%v\n", d)
 }
 
@@ -1845,7 +1845,7 @@ func TestEorAbsoluteX(t *testing.T) {
 	if c.sr&Zero == Zero {
 		t.Fatalf("zero unexpected status register %0x", c.sr)
 	}
-	d, _ := c.disassemble(0x1000)
+	d, _ := c.Disassemble(0x1000)
 	t.Logf("%v\n", d)
 }
 
@@ -1871,7 +1871,7 @@ func TestEorZPX(t *testing.T) {
 	if c.sr&Zero == Zero {
 		t.Fatalf("zero unexpected status register %0x", c.sr)
 	}
-	d, _ := c.disassemble(0x1000)
+	d, _ := c.Disassemble(0x1000)
 	t.Logf("%v\n", d)
 }
 
@@ -1898,7 +1898,7 @@ func TestLsrZP(t *testing.T) {
 	if c.sr&Carry == Carry {
 		t.Fatalf("carry unexpected status register %0x", c.sr)
 	}
-	d, _ := c.disassemble(0x1000)
+	d, _ := c.Disassemble(0x1000)
 	t.Logf("%v\n", d)
 
 	// test 0
@@ -1923,7 +1923,7 @@ func TestLsrZP(t *testing.T) {
 	if c.sr&Carry == Carry {
 		t.Fatalf("carry unexpected status register %0x", c.sr)
 	}
-	d, _ = c.disassemble(0x1000)
+	d, _ = c.Disassemble(0x1000)
 	t.Logf("%v\n", d)
 
 	// test carry
@@ -1948,7 +1948,7 @@ func TestLsrZP(t *testing.T) {
 	if c.sr&Carry != Carry {
 		t.Fatalf("carry unexpected status register %0x", c.sr)
 	}
-	d, _ = c.disassemble(0x1000)
+	d, _ = c.Disassemble(0x1000)
 	t.Logf("%v\n", d)
 }
 
@@ -1974,7 +1974,7 @@ func TestLsr(t *testing.T) {
 	if c.sr&Carry == Carry {
 		t.Fatalf("carry unexpected status register %0x", c.sr)
 	}
-	d, _ := c.disassemble(0x1000)
+	d, _ := c.Disassemble(0x1000)
 	t.Logf("%v\n", d)
 }
 
@@ -2002,7 +2002,7 @@ func TestLsrAbsolute(t *testing.T) {
 	if c.sr&Carry == Carry {
 		t.Fatalf("carry unexpected status register %0x", c.sr)
 	}
-	d, _ := c.disassemble(0x1000)
+	d, _ := c.Disassemble(0x1000)
 	t.Logf("%v\n", d)
 }
 
@@ -2030,7 +2030,7 @@ func TestLsrZPX(t *testing.T) {
 	if c.sr&Carry == Carry {
 		t.Fatalf("carry unexpected status register %0x", c.sr)
 	}
-	d, _ := c.disassemble(0x1000)
+	d, _ := c.Disassemble(0x1000)
 	t.Logf("%v\n", d)
 }
 
@@ -2059,7 +2059,7 @@ func TestLsrAbsoluteX(t *testing.T) {
 	if c.sr&Carry == Carry {
 		t.Fatalf("carry unexpected status register %0x", c.sr)
 	}
-	d, _ := c.disassemble(0x1000)
+	d, _ := c.Disassemble(0x1000)
 	t.Logf("%v\n", d)
 }
 
@@ -2087,7 +2087,7 @@ func TestRorZP(t *testing.T) {
 	if c.sr&Carry == Carry {
 		t.Fatalf("carry unexpected status register %0x", c.sr)
 	}
-	d, _ := c.disassemble(0x1000)
+	d, _ := c.Disassemble(0x1000)
 	t.Logf("%v\n", d)
 
 	// test 0
@@ -2112,7 +2112,7 @@ func TestRorZP(t *testing.T) {
 	if c.sr&Carry == Carry {
 		t.Fatalf("carry unexpected status register %0x", c.sr)
 	}
-	d, _ = c.disassemble(0x1000)
+	d, _ = c.Disassemble(0x1000)
 	t.Logf("%v\n", d)
 
 	// test carry
@@ -2137,7 +2137,7 @@ func TestRorZP(t *testing.T) {
 	if c.sr&Carry != Carry {
 		t.Fatalf("carry unexpected status register %0x", c.sr)
 	}
-	d, _ = c.disassemble(0x1000)
+	d, _ = c.Disassemble(0x1000)
 	t.Logf("%v\n", d)
 }
 
@@ -2164,7 +2164,7 @@ func TestRor(t *testing.T) {
 	if c.sr&Carry == Carry {
 		t.Fatalf("carry unexpected status register %0x", c.sr)
 	}
-	d, _ := c.disassemble(0x1000)
+	d, _ := c.Disassemble(0x1000)
 	t.Logf("%v\n", d)
 }
 
@@ -2193,7 +2193,7 @@ func TestRorAbsolute(t *testing.T) {
 	if c.sr&Carry == Carry {
 		t.Fatalf("carry unexpected status register %0x", c.sr)
 	}
-	d, _ := c.disassemble(0x1000)
+	d, _ := c.Disassemble(0x1000)
 	t.Logf("%v\n", d)
 }
 
@@ -2222,7 +2222,7 @@ func TestRorZPX(t *testing.T) {
 	if c.sr&Carry == Carry {
 		t.Fatalf("carry unexpected status register %0x", c.sr)
 	}
-	d, _ := c.disassemble(0x1000)
+	d, _ := c.Disassemble(0x1000)
 	t.Logf("%v\n", d)
 }
 
@@ -2252,7 +2252,7 @@ func TestRorAbsoluteX(t *testing.T) {
 	if c.sr&Carry == Carry {
 		t.Fatalf("carry unexpected status register %0x", c.sr)
 	}
-	d, _ := c.disassemble(0x1000)
+	d, _ := c.Disassemble(0x1000)
 	t.Logf("%v\n", d)
 }
 
@@ -2281,7 +2281,7 @@ func TestStaIndirectX(t *testing.T) {
 	if c.sr&Zero == Zero {
 		t.Fatalf("zero unexpected status register %0x", c.sr)
 	}
-	d, _ := c.disassemble(0x1000)
+	d, _ := c.Disassemble(0x1000)
 	t.Logf("%v\n", d)
 }
 
@@ -2301,7 +2301,7 @@ func TestStaZP(t *testing.T) {
 	if c.pc != 0x1002 {
 		t.Fatalf("unexpected program counter")
 	}
-	d, _ := c.disassemble(0x1000)
+	d, _ := c.Disassemble(0x1000)
 	t.Logf("%v\n", d)
 }
 
@@ -2322,7 +2322,7 @@ func TestStaAbsolute(t *testing.T) {
 	if c.pc != 0x1003 {
 		t.Fatalf("unexpected program counter")
 	}
-	d, _ := c.disassemble(0x1000)
+	d, _ := c.Disassemble(0x1000)
 	t.Logf("%v\n", d)
 }
 
@@ -2345,7 +2345,7 @@ func TestStaIndirectY(t *testing.T) {
 	if c.pc != 0x1002 {
 		t.Fatalf("unexpected program counter")
 	}
-	d, _ := c.disassemble(0x1000)
+	d, _ := c.Disassemble(0x1000)
 	t.Logf("%v\n", d)
 }
 
@@ -2366,7 +2366,7 @@ func TestStaZPX(t *testing.T) {
 	if c.pc != 0x1002 {
 		t.Fatalf("unexpected program counter")
 	}
-	d, _ := c.disassemble(0x1000)
+	d, _ := c.Disassemble(0x1000)
 	t.Logf("%v\n", d)
 }
 
@@ -2388,7 +2388,7 @@ func TestStaAbsoluteY(t *testing.T) {
 	if c.pc != 0x1003 {
 		t.Fatalf("unexpected program counter")
 	}
-	d, _ := c.disassemble(0x1000)
+	d, _ := c.Disassemble(0x1000)
 	t.Logf("%v\n", d)
 }
 
@@ -2410,7 +2410,7 @@ func TestStaAbsoluteX(t *testing.T) {
 	if c.pc != 0x1003 {
 		t.Fatalf("unexpected program counter")
 	}
-	d, _ := c.disassemble(0x1000)
+	d, _ := c.Disassemble(0x1000)
 	t.Logf("%v\n", d)
 }
 
@@ -2430,7 +2430,7 @@ func TestStyZP(t *testing.T) {
 	if c.pc != 0x1002 {
 		t.Fatalf("unexpected program counter")
 	}
-	d, _ := c.disassemble(0x1000)
+	d, _ := c.Disassemble(0x1000)
 	t.Logf("%v\n", d)
 }
 
@@ -2451,7 +2451,7 @@ func TestStyAbsolute(t *testing.T) {
 	if c.pc != 0x1003 {
 		t.Fatalf("unexpected program counter")
 	}
-	d, _ := c.disassemble(0x1000)
+	d, _ := c.Disassemble(0x1000)
 	t.Logf("%v\n", d)
 }
 
@@ -2472,7 +2472,7 @@ func TestStyZPX(t *testing.T) {
 	if c.pc != 0x1002 {
 		t.Fatalf("unexpected program counter")
 	}
-	d, _ := c.disassemble(0x1000)
+	d, _ := c.Disassemble(0x1000)
 	t.Logf("%v\n", d)
 }
 
@@ -2492,7 +2492,7 @@ func TestStxZP(t *testing.T) {
 	if c.pc != 0x1002 {
 		t.Fatalf("unexpected program counter")
 	}
-	d, _ := c.disassemble(0x1000)
+	d, _ := c.Disassemble(0x1000)
 	t.Logf("%v\n", d)
 }
 
@@ -2513,7 +2513,7 @@ func TestStxAbsolute(t *testing.T) {
 	if c.pc != 0x1003 {
 		t.Fatalf("unexpected program counter")
 	}
-	d, _ := c.disassemble(0x1000)
+	d, _ := c.Disassemble(0x1000)
 	t.Logf("%v\n", d)
 }
 
@@ -2534,7 +2534,7 @@ func TestStxZPY(t *testing.T) {
 	if c.pc != 0x1002 {
 		t.Fatalf("unexpected program counter")
 	}
-	d, _ := c.disassemble(0x1000)
+	d, _ := c.Disassemble(0x1000)
 	t.Logf("%v\n", d)
 }
 
@@ -2558,7 +2558,7 @@ func TestDecZP(t *testing.T) {
 	if c.sr&Zero == Zero {
 		t.Fatalf("zero unexpected status register %0x", c.sr)
 	}
-	d, _ := c.disassemble(0x1000)
+	d, _ := c.Disassemble(0x1000)
 	t.Logf("%v\n", d)
 
 	// zero
@@ -2579,7 +2579,7 @@ func TestDecZP(t *testing.T) {
 	if c.sr&Zero != Zero {
 		t.Fatalf("zero unexpected status register %0x", c.sr)
 	}
-	d, _ = c.disassemble(0x1000)
+	d, _ = c.Disassemble(0x1000)
 	t.Logf("%v\n", d)
 
 	// non zero
@@ -2600,7 +2600,7 @@ func TestDecZP(t *testing.T) {
 	if c.sr&Zero == Zero {
 		t.Fatalf("zero unexpected status register %0x", c.sr)
 	}
-	d, _ = c.disassemble(0x1000)
+	d, _ = c.Disassemble(0x1000)
 	t.Logf("%v\n", d)
 }
 
@@ -2625,7 +2625,7 @@ func TestDecAbsolute(t *testing.T) {
 	if c.sr&Zero == Zero {
 		t.Fatalf("zero unexpected status register %0x", c.sr)
 	}
-	d, _ := c.disassemble(0x1000)
+	d, _ := c.Disassemble(0x1000)
 	t.Logf("%v\n", d)
 }
 
@@ -2646,7 +2646,7 @@ func TestDecZPX(t *testing.T) {
 	if c.pc != 0x1002 {
 		t.Fatalf("unexpected program counter")
 	}
-	d, _ := c.disassemble(0x1000)
+	d, _ := c.Disassemble(0x1000)
 	t.Logf("%v\n", d)
 }
 
@@ -2672,7 +2672,7 @@ func TestDecAbsoluteX(t *testing.T) {
 	if c.sr&Zero == Zero {
 		t.Fatalf("zero unexpected status register %0x", c.sr)
 	}
-	d, _ := c.disassemble(0x1000)
+	d, _ := c.Disassemble(0x1000)
 	t.Logf("%v\n", d)
 }
 
@@ -2696,7 +2696,7 @@ func TestIncZP(t *testing.T) {
 	if c.sr&Zero == Zero {
 		t.Fatalf("zero unexpected status register %0x", c.sr)
 	}
-	d, _ := c.disassemble(0x1000)
+	d, _ := c.Disassemble(0x1000)
 	t.Logf("%v\n", d)
 
 	// zero
@@ -2717,7 +2717,7 @@ func TestIncZP(t *testing.T) {
 	if c.sr&Zero != Zero {
 		t.Fatalf("zero unexpected status register %0x", c.sr)
 	}
-	d, _ = c.disassemble(0x1000)
+	d, _ = c.Disassemble(0x1000)
 	t.Logf("%v\n", d)
 
 	// non zero
@@ -2738,7 +2738,7 @@ func TestIncZP(t *testing.T) {
 	if c.sr&Zero == Zero {
 		t.Fatalf("zero unexpected status register %0x", c.sr)
 	}
-	d, _ = c.disassemble(0x1000)
+	d, _ = c.Disassemble(0x1000)
 	t.Logf("%v\n", d)
 }
 
@@ -2763,7 +2763,7 @@ func TestIncAbsolute(t *testing.T) {
 	if c.sr&Zero == Zero {
 		t.Fatalf("zero unexpected status register %0x", c.sr)
 	}
-	d, _ := c.disassemble(0x1000)
+	d, _ := c.Disassemble(0x1000)
 	t.Logf("%v\n", d)
 }
 
@@ -2788,7 +2788,7 @@ func TestIncZPX(t *testing.T) {
 	if c.sr&Zero == Zero {
 		t.Fatalf("zero unexpected status register %0x", c.sr)
 	}
-	d, _ := c.disassemble(0x1000)
+	d, _ := c.Disassemble(0x1000)
 	t.Logf("%v\n", d)
 }
 
@@ -2814,7 +2814,7 @@ func TestIncAbsoluteX(t *testing.T) {
 	if c.sr&Zero == Zero {
 		t.Fatalf("zero unexpected status register %0x", c.sr)
 	}
-	d, _ := c.disassemble(0x1000)
+	d, _ := c.Disassemble(0x1000)
 	t.Logf("%v\n", d)
 }
 
@@ -2837,7 +2837,7 @@ func TestDex(t *testing.T) {
 	if c.sr&Zero == Zero {
 		t.Fatalf("zero unexpected status register %0x", c.sr)
 	}
-	d, _ := c.disassemble(0x1000)
+	d, _ := c.Disassemble(0x1000)
 	t.Logf("%v\n", d)
 
 	// zero
@@ -2857,7 +2857,7 @@ func TestDex(t *testing.T) {
 	if c.sr&Zero != Zero {
 		t.Fatalf("zero unexpected status register %0x", c.sr)
 	}
-	d, _ = c.disassemble(0x1000)
+	d, _ = c.Disassemble(0x1000)
 	t.Logf("%v\n", d)
 
 	// non zero
@@ -2877,7 +2877,7 @@ func TestDex(t *testing.T) {
 	if c.sr&Zero == Zero {
 		t.Fatalf("zero unexpected status register %0x", c.sr)
 	}
-	d, _ = c.disassemble(0x1000)
+	d, _ = c.Disassemble(0x1000)
 	t.Logf("%v\n", d)
 }
 
@@ -2900,7 +2900,7 @@ func TestDey(t *testing.T) {
 	if c.sr&Zero == Zero {
 		t.Fatalf("zero unexpected status register %0x", c.sr)
 	}
-	d, _ := c.disassemble(0x1000)
+	d, _ := c.Disassemble(0x1000)
 	t.Logf("%v\n", d)
 
 	// zero
@@ -2920,7 +2920,7 @@ func TestDey(t *testing.T) {
 	if c.sr&Zero != Zero {
 		t.Fatalf("zero unexpected status register %0x", c.sr)
 	}
-	d, _ = c.disassemble(0x1000)
+	d, _ = c.Disassemble(0x1000)
 	t.Logf("%v\n", d)
 
 	// non zero
@@ -2940,7 +2940,7 @@ func TestDey(t *testing.T) {
 	if c.sr&Zero == Zero {
 		t.Fatalf("zero unexpected status register %0x", c.sr)
 	}
-	d, _ = c.disassemble(0x1000)
+	d, _ = c.Disassemble(0x1000)
 	t.Logf("%v\n", d)
 }
 
@@ -2963,7 +2963,7 @@ func TestIny(t *testing.T) {
 	if c.sr&Zero == Zero {
 		t.Fatalf("zero unexpected status register %0x", c.sr)
 	}
-	d, _ := c.disassemble(0x1000)
+	d, _ := c.Disassemble(0x1000)
 	t.Logf("%v\n", d)
 
 	// zero
@@ -2983,7 +2983,7 @@ func TestIny(t *testing.T) {
 	if c.sr&Zero != Zero {
 		t.Fatalf("zero unexpected status register %0x", c.sr)
 	}
-	d, _ = c.disassemble(0x1000)
+	d, _ = c.Disassemble(0x1000)
 	t.Logf("%v\n", d)
 
 	// non zero
@@ -3003,7 +3003,7 @@ func TestIny(t *testing.T) {
 	if c.sr&Zero == Zero {
 		t.Fatalf("zero unexpected status register %0x", c.sr)
 	}
-	d, _ = c.disassemble(0x1000)
+	d, _ = c.Disassemble(0x1000)
 	t.Logf("%v\n", d)
 }
 
@@ -3026,7 +3026,7 @@ func TestInx(t *testing.T) {
 	if c.sr&Zero == Zero {
 		t.Fatalf("zero unexpected status register %0x", c.sr)
 	}
-	d, _ := c.disassemble(0x1000)
+	d, _ := c.Disassemble(0x1000)
 	t.Logf("%v\n", d)
 
 	// zero
@@ -3046,7 +3046,7 @@ func TestInx(t *testing.T) {
 	if c.sr&Zero != Zero {
 		t.Fatalf("zero unexpected status register %0x", c.sr)
 	}
-	d, _ = c.disassemble(0x1000)
+	d, _ = c.Disassemble(0x1000)
 	t.Logf("%v\n", d)
 
 	// non zero
@@ -3066,7 +3066,7 @@ func TestInx(t *testing.T) {
 	if c.sr&Zero == Zero {
 		t.Fatalf("zero unexpected status register %0x", c.sr)
 	}
-	d, _ = c.disassemble(0x1000)
+	d, _ = c.Disassemble(0x1000)
 	t.Logf("%v\n", d)
 }
 
@@ -3089,7 +3089,7 @@ func TestTxa(t *testing.T) {
 	if c.sr&Zero == Zero {
 		t.Fatalf("zero unexpected status register %0x", c.sr)
 	}
-	d, _ := c.disassemble(0x1000)
+	d, _ := c.Disassemble(0x1000)
 	t.Logf("%v\n", d)
 
 	// zero
@@ -3109,7 +3109,7 @@ func TestTxa(t *testing.T) {
 	if c.sr&Zero != Zero {
 		t.Fatalf("zero unexpected status register %0x", c.sr)
 	}
-	d, _ = c.disassemble(0x1000)
+	d, _ = c.Disassemble(0x1000)
 	t.Logf("%v\n", d)
 
 	// non zero
@@ -3129,7 +3129,7 @@ func TestTxa(t *testing.T) {
 	if c.sr&Zero == Zero {
 		t.Fatalf("zero unexpected status register %0x", c.sr)
 	}
-	d, _ = c.disassemble(0x1000)
+	d, _ = c.Disassemble(0x1000)
 	t.Logf("%v\n", d)
 }
 
@@ -3152,7 +3152,7 @@ func TestTya(t *testing.T) {
 	if c.sr&Zero == Zero {
 		t.Fatalf("zero unexpected status register %0x", c.sr)
 	}
-	d, _ := c.disassemble(0x1000)
+	d, _ := c.Disassemble(0x1000)
 	t.Logf("%v\n", d)
 
 	// zero
@@ -3172,7 +3172,7 @@ func TestTya(t *testing.T) {
 	if c.sr&Zero != Zero {
 		t.Fatalf("zero unexpected status register %0x", c.sr)
 	}
-	d, _ = c.disassemble(0x1000)
+	d, _ = c.Disassemble(0x1000)
 	t.Logf("%v\n", d)
 
 	// non zero
@@ -3192,7 +3192,7 @@ func TestTya(t *testing.T) {
 	if c.sr&Zero == Zero {
 		t.Fatalf("zero unexpected status register %0x", c.sr)
 	}
-	d, _ = c.disassemble(0x1000)
+	d, _ = c.Disassemble(0x1000)
 	t.Logf("%v\n", d)
 }
 
@@ -3215,7 +3215,7 @@ func TestTay(t *testing.T) {
 	if c.sr&Zero == Zero {
 		t.Fatalf("zero unexpected status register %0x", c.sr)
 	}
-	d, _ := c.disassemble(0x1000)
+	d, _ := c.Disassemble(0x1000)
 	t.Logf("%v\n", d)
 
 	// zero
@@ -3235,7 +3235,7 @@ func TestTay(t *testing.T) {
 	if c.sr&Zero != Zero {
 		t.Fatalf("zero unexpected status register %0x", c.sr)
 	}
-	d, _ = c.disassemble(0x1000)
+	d, _ = c.Disassemble(0x1000)
 	t.Logf("%v\n", d)
 
 	// non zero
@@ -3255,7 +3255,7 @@ func TestTay(t *testing.T) {
 	if c.sr&Zero == Zero {
 		t.Fatalf("zero unexpected status register %0x", c.sr)
 	}
-	d, _ = c.disassemble(0x1000)
+	d, _ = c.Disassemble(0x1000)
 	t.Logf("%v\n", d)
 }
 
@@ -3278,7 +3278,7 @@ func TestTax(t *testing.T) {
 	if c.sr&Zero == Zero {
 		t.Fatalf("zero unexpected status register %0x", c.sr)
 	}
-	d, _ := c.disassemble(0x1000)
+	d, _ := c.Disassemble(0x1000)
 	t.Logf("%v\n", d)
 
 	// zero
@@ -3298,7 +3298,7 @@ func TestTax(t *testing.T) {
 	if c.sr&Zero != Zero {
 		t.Fatalf("zero unexpected status register %0x", c.sr)
 	}
-	d, _ = c.disassemble(0x1000)
+	d, _ = c.Disassemble(0x1000)
 	t.Logf("%v\n", d)
 
 	// non zero
@@ -3318,7 +3318,7 @@ func TestTax(t *testing.T) {
 	if c.sr&Zero == Zero {
 		t.Fatalf("zero unexpected status register %0x", c.sr)
 	}
-	d, _ = c.disassemble(0x1000)
+	d, _ = c.Disassemble(0x1000)
 	t.Logf("%v\n", d)
 }
 
@@ -3337,7 +3337,7 @@ func TestTxs(t *testing.T) {
 	if c.pc != 0x1001 {
 		t.Fatalf("unexpected program counter")
 	}
-	d, _ := c.disassemble(0x1000)
+	d, _ := c.Disassemble(0x1000)
 	t.Logf("%v\n", d)
 }
 
@@ -3356,7 +3356,7 @@ func TestTsx(t *testing.T) {
 	if c.pc != 0x1001 {
 		t.Fatalf("unexpected program counter")
 	}
-	d, _ := c.disassemble(0x1000)
+	d, _ := c.Disassemble(0x1000)
 	t.Logf("%v\n", d)
 }
 
@@ -3381,7 +3381,7 @@ func TestLdy(t *testing.T) {
 	if c.sr&Zero == Zero {
 		t.Fatalf("zero unexpected status register %0x", c.sr)
 	}
-	d, _ := c.disassemble(0x1000)
+	d, _ := c.Disassemble(0x1000)
 	t.Logf("%v\n", d)
 }
 
@@ -3405,7 +3405,7 @@ func TestLdyZP(t *testing.T) {
 	if c.sr&Zero == Zero {
 		t.Fatalf("zero unexpected status register %0x", c.sr)
 	}
-	d, _ := c.disassemble(0x1000)
+	d, _ := c.Disassemble(0x1000)
 	t.Logf("%v\n", d)
 }
 
@@ -3430,7 +3430,7 @@ func TestLdyAbsolute(t *testing.T) {
 	if c.sr&Zero == Zero {
 		t.Fatalf("zero unexpected status register %0x", c.sr)
 	}
-	d, _ := c.disassemble(0x1000)
+	d, _ := c.Disassemble(0x1000)
 	t.Logf("%v\n", d)
 }
 
@@ -3457,7 +3457,7 @@ func TestLdyZPX(t *testing.T) {
 	if c.sr&Zero == Zero {
 		t.Fatalf("zero unexpected status register %0x", c.sr)
 	}
-	d, _ := c.disassemble(0x1000)
+	d, _ := c.Disassemble(0x1000)
 	t.Logf("%v\n", d)
 }
 
@@ -3485,7 +3485,7 @@ func TestLdyAbsoluteX(t *testing.T) {
 	if c.sr&Zero == Zero {
 		t.Fatalf("zero unexpected status register %0x", c.sr)
 	}
-	d, _ := c.disassemble(0x1000)
+	d, _ := c.Disassemble(0x1000)
 	t.Logf("%v\n", d)
 }
 
@@ -3510,7 +3510,7 @@ func TestLdx(t *testing.T) {
 	if c.sr&Zero == Zero {
 		t.Fatalf("zero unexpected status register %0x", c.sr)
 	}
-	d, _ := c.disassemble(0x1000)
+	d, _ := c.Disassemble(0x1000)
 	t.Logf("%v\n", d)
 }
 
@@ -3534,7 +3534,7 @@ func TestLdxZP(t *testing.T) {
 	if c.sr&Zero == Zero {
 		t.Fatalf("zero unexpected status register %0x", c.sr)
 	}
-	d, _ := c.disassemble(0x1000)
+	d, _ := c.Disassemble(0x1000)
 	t.Logf("%v\n", d)
 }
 
@@ -3559,7 +3559,7 @@ func TestLdxAbsolute(t *testing.T) {
 	if c.sr&Zero == Zero {
 		t.Fatalf("zero unexpected status register %0x", c.sr)
 	}
-	d, _ := c.disassemble(0x1000)
+	d, _ := c.Disassemble(0x1000)
 	t.Logf("%v\n", d)
 }
 
@@ -3586,7 +3586,7 @@ func TestLdxZPY(t *testing.T) {
 	if c.sr&Zero == Zero {
 		t.Fatalf("zero unexpected status register %0x", c.sr)
 	}
-	d, _ := c.disassemble(0x1000)
+	d, _ := c.Disassemble(0x1000)
 	t.Logf("%v\n", d)
 }
 
@@ -3614,7 +3614,7 @@ func TestLdxAbsoluteY(t *testing.T) {
 	if c.sr&Zero == Zero {
 		t.Fatalf("zero unexpected status register %0x", c.sr)
 	}
-	d, _ := c.disassemble(0x1000)
+	d, _ := c.Disassemble(0x1000)
 	t.Logf("%v\n", d)
 }
 
@@ -3643,7 +3643,7 @@ func TestLdaIndirectX(t *testing.T) {
 	if c.sr&Zero == Zero {
 		t.Fatalf("zero unexpected status register %0x", c.sr)
 	}
-	d, _ := c.disassemble(0x1000)
+	d, _ := c.Disassemble(0x1000)
 	t.Logf("%v\n", d)
 }
 
@@ -3667,7 +3667,7 @@ func TestLdaZP(t *testing.T) {
 	if c.sr&Zero == Zero {
 		t.Fatalf("zero unexpected status register %0x", c.sr)
 	}
-	d, _ := c.disassemble(0x1000)
+	d, _ := c.Disassemble(0x1000)
 	t.Logf("%v\n", d)
 }
 
@@ -3692,7 +3692,7 @@ func TestLda(t *testing.T) {
 	if c.sr&Zero == Zero {
 		t.Fatalf("zero unexpected status register %0x", c.sr)
 	}
-	d, _ := c.disassemble(0x1000)
+	d, _ := c.Disassemble(0x1000)
 	t.Logf("%v\n", d)
 }
 
@@ -3717,7 +3717,7 @@ func TestLdaAbsolute(t *testing.T) {
 	if c.sr&Zero == Zero {
 		t.Fatalf("zero unexpected status register %0x", c.sr)
 	}
-	d, _ := c.disassemble(0x1000)
+	d, _ := c.Disassemble(0x1000)
 	t.Logf("%v\n", d)
 }
 
@@ -3747,7 +3747,7 @@ func TestLdaIndirectY(t *testing.T) {
 	if c.sr&Zero == Zero {
 		t.Fatalf("zero unexpected status register %0x", c.sr)
 	}
-	d, _ := c.disassemble(0x1000)
+	d, _ := c.Disassemble(0x1000)
 	t.Logf("%v\n", d)
 }
 
@@ -3774,7 +3774,7 @@ func TestLdaZPX(t *testing.T) {
 	if c.sr&Zero == Zero {
 		t.Fatalf("zero unexpected status register %0x", c.sr)
 	}
-	d, _ := c.disassemble(0x1000)
+	d, _ := c.Disassemble(0x1000)
 	t.Logf("%v\n", d)
 }
 
@@ -3802,7 +3802,7 @@ func TestLdaAbsoluteY(t *testing.T) {
 	if c.sr&Zero == Zero {
 		t.Fatalf("zero unexpected status register %0x", c.sr)
 	}
-	d, _ := c.disassemble(0x1000)
+	d, _ := c.Disassemble(0x1000)
 	t.Logf("%v\n", d)
 }
 
@@ -3830,7 +3830,7 @@ func TestLdaAbsoluteX(t *testing.T) {
 	if c.sr&Zero == Zero {
 		t.Fatalf("zero unexpected status register %0x", c.sr)
 	}
-	d, _ := c.disassemble(0x1000)
+	d, _ := c.Disassemble(0x1000)
 	t.Logf("%v\n", d)
 }
 
@@ -3858,7 +3858,7 @@ func TestCpy(t *testing.T) {
 	if c.sr&Carry != Carry {
 		t.Fatalf("carry unexpected status register %0x", c.sr)
 	}
-	d, _ := c.disassemble(0x1000)
+	d, _ := c.Disassemble(0x1000)
 	t.Logf("%v\n", d)
 
 	// register larger
@@ -3882,7 +3882,7 @@ func TestCpy(t *testing.T) {
 	if c.sr&Carry == Carry {
 		t.Fatalf("carry unexpected status register %0x", c.sr)
 	}
-	d, _ = c.disassemble(0x1000)
+	d, _ = c.Disassemble(0x1000)
 	t.Logf("%v\n", d)
 
 	// register smaller
@@ -3906,7 +3906,7 @@ func TestCpy(t *testing.T) {
 	if c.sr&Carry != Carry {
 		t.Fatalf("carry unexpected status register %0x", c.sr)
 	}
-	d, _ = c.disassemble(0x1000)
+	d, _ = c.Disassemble(0x1000)
 	t.Logf("%v\n", d)
 }
 
@@ -3934,7 +3934,7 @@ func TestCpyZP(t *testing.T) {
 	if c.sr&Carry != Carry {
 		t.Fatalf("carry unexpected status register %0x", c.sr)
 	}
-	d, _ := c.disassemble(0x1000)
+	d, _ := c.Disassemble(0x1000)
 	t.Logf("%v\n", d)
 }
 
@@ -3965,7 +3965,7 @@ func TestCpyAbsolute(t *testing.T) {
 	if c.sr&Carry != Carry {
 		t.Fatalf("carry unexpected status register %0x", c.sr)
 	}
-	d, _ := c.disassemble(0x1000)
+	d, _ := c.Disassemble(0x1000)
 	t.Logf("%v\n", d)
 }
 
@@ -3993,7 +3993,7 @@ func TestCpx(t *testing.T) {
 	if c.sr&Carry != Carry {
 		t.Fatalf("carry unexpected status register %0x", c.sr)
 	}
-	d, _ := c.disassemble(0x1000)
+	d, _ := c.Disassemble(0x1000)
 	t.Logf("%v\n", d)
 
 	// register larger
@@ -4017,7 +4017,7 @@ func TestCpx(t *testing.T) {
 	if c.sr&Carry == Carry {
 		t.Fatalf("carry unexpected status register %0x", c.sr)
 	}
-	d, _ = c.disassemble(0x1000)
+	d, _ = c.Disassemble(0x1000)
 	t.Logf("%v\n", d)
 
 	// register smaller
@@ -4041,7 +4041,7 @@ func TestCpx(t *testing.T) {
 	if c.sr&Carry != Carry {
 		t.Fatalf("carry unexpected status register %0x", c.sr)
 	}
-	d, _ = c.disassemble(0x1000)
+	d, _ = c.Disassemble(0x1000)
 	t.Logf("%v\n", d)
 }
 
@@ -4069,7 +4069,7 @@ func TestCpxZP(t *testing.T) {
 	if c.sr&Carry != Carry {
 		t.Fatalf("carry unexpected status register %0x", c.sr)
 	}
-	d, _ := c.disassemble(0x1000)
+	d, _ := c.Disassemble(0x1000)
 	t.Logf("%v\n", d)
 }
 
@@ -4100,7 +4100,7 @@ func TestCpxAbsolute(t *testing.T) {
 	if c.sr&Carry != Carry {
 		t.Fatalf("carry unexpected status register %0x", c.sr)
 	}
-	d, _ := c.disassemble(0x1000)
+	d, _ := c.Disassemble(0x1000)
 	t.Logf("%v\n", d)
 }
 
@@ -4133,7 +4133,7 @@ func TestCmpIndirectX(t *testing.T) {
 	if c.sr&Carry != Carry {
 		t.Fatalf("carry unexpected status register %0x", c.sr)
 	}
-	d, _ := c.disassemble(0x1000)
+	d, _ := c.Disassemble(0x1000)
 	t.Logf("%v\n", d)
 }
 
@@ -4161,7 +4161,7 @@ func TestCmpZP(t *testing.T) {
 	if c.sr&Carry != Carry {
 		t.Fatalf("carry unexpected status register %0x", c.sr)
 	}
-	d, _ := c.disassemble(0x1000)
+	d, _ := c.Disassemble(0x1000)
 	t.Logf("%v\n", d)
 }
 
@@ -4189,7 +4189,7 @@ func TestCmp(t *testing.T) {
 	if c.sr&Carry != Carry {
 		t.Fatalf("carry unexpected status register %0x", c.sr)
 	}
-	d, _ := c.disassemble(0x1000)
+	d, _ := c.Disassemble(0x1000)
 	t.Logf("%v\n", d)
 
 	// register larger
@@ -4213,7 +4213,7 @@ func TestCmp(t *testing.T) {
 	if c.sr&Carry == Carry {
 		t.Fatalf("carry unexpected status register %0x", c.sr)
 	}
-	d, _ = c.disassemble(0x1000)
+	d, _ = c.Disassemble(0x1000)
 	t.Logf("%v\n", d)
 
 	// register smaller
@@ -4237,7 +4237,7 @@ func TestCmp(t *testing.T) {
 	if c.sr&Carry != Carry {
 		t.Fatalf("carry unexpected status register %0x", c.sr)
 	}
-	d, _ = c.disassemble(0x1000)
+	d, _ = c.Disassemble(0x1000)
 	t.Logf("%v\n", d)
 }
 
@@ -4268,7 +4268,7 @@ func TestCmpAbsolute(t *testing.T) {
 	if c.sr&Carry != Carry {
 		t.Fatalf("carry unexpected status register %0x", c.sr)
 	}
-	d, _ := c.disassemble(0x1000)
+	d, _ := c.Disassemble(0x1000)
 	t.Logf("%v\n", d)
 }
 
@@ -4301,7 +4301,7 @@ func TestCmpIndirectY(t *testing.T) {
 	if c.sr&Carry != Carry {
 		t.Fatalf("carry unexpected status register %0x", c.sr)
 	}
-	d, _ := c.disassemble(0x1000)
+	d, _ := c.Disassemble(0x1000)
 	t.Logf("%v\n", d)
 }
 
@@ -4332,7 +4332,7 @@ func TestCmpZPX(t *testing.T) {
 	if c.sr&Carry != Carry {
 		t.Fatalf("carry unexpected status register %0x", c.sr)
 	}
-	d, _ := c.disassemble(0x1000)
+	d, _ := c.Disassemble(0x1000)
 	t.Logf("%v\n", d)
 }
 
@@ -4364,7 +4364,7 @@ func TestCmpAbsoluteY(t *testing.T) {
 	if c.sr&Carry != Carry {
 		t.Fatalf("carry unexpected status register %0x", c.sr)
 	}
-	d, _ := c.disassemble(0x1000)
+	d, _ := c.Disassemble(0x1000)
 	t.Logf("%v\n", d)
 }
 
@@ -4396,7 +4396,7 @@ func TestCmpAbsoluteX(t *testing.T) {
 	if c.sr&Carry != Carry {
 		t.Fatalf("carry unexpected status register %0x", c.sr)
 	}
-	d, _ := c.disassemble(0x1000)
+	d, _ := c.Disassemble(0x1000)
 	t.Logf("%v\n", d)
 }
 
@@ -4410,7 +4410,7 @@ func TestNop(t *testing.T) {
 	if c.pc != 0x1001 {
 		t.Fatalf("unexpected program counter")
 	}
-	d, _ := c.disassemble(0x1000)
+	d, _ := c.Disassemble(0x1000)
 	t.Logf("%v\n", d)
 }
 
@@ -4433,7 +4433,7 @@ func TestSbcImmediate(t *testing.T) {
 	if c.sr&Carry != Carry {
 		t.Fatalf("carry unexpected status register %0x", c.sr)
 	}
-	d, _ := c.disassemble(0x1000)
+	d, _ := c.Disassemble(0x1000)
 	t.Logf("%v\n", d)
 
 	// without carry
@@ -4454,7 +4454,7 @@ func TestSbcImmediate(t *testing.T) {
 	if c.sr&Carry != Carry {
 		t.Fatalf("carry unexpected status register %0x", c.sr)
 	}
-	d, _ = c.disassemble(0x1000)
+	d, _ = c.Disassemble(0x1000)
 	t.Logf("%v\n", d)
 
 	// negative no carry
@@ -4479,7 +4479,7 @@ func TestSbcImmediate(t *testing.T) {
 	if c.sr&Zero == Zero {
 		t.Fatalf("carry unexpected status register %0x", c.sr)
 	}
-	d, _ = c.disassemble(0x1000)
+	d, _ = c.Disassemble(0x1000)
 	t.Logf("%v\n", d)
 
 	// zero
@@ -4504,7 +4504,7 @@ func TestSbcImmediate(t *testing.T) {
 	if c.sr&Zero != Zero {
 		t.Fatalf("carry unexpected status register %0x", c.sr)
 	}
-	d, _ = c.disassemble(0x1000)
+	d, _ = c.Disassemble(0x1000)
 	t.Logf("%v\n", d)
 
 }
@@ -4531,7 +4531,7 @@ func TestSbcDecimal(t *testing.T) {
 	if c.sr&Zero == Zero {
 		t.Fatalf("carry unexpected status register %0x", c.sr)
 	}
-	d, _ := c.disassemble(0x1000)
+	d, _ := c.Disassemble(0x1000)
 	t.Logf("%v\n", d)
 }
 
@@ -4555,7 +4555,7 @@ func TestSbcZP(t *testing.T) {
 	if c.sr&Carry != Carry {
 		t.Fatalf("carry unexpected status register %0x", c.sr)
 	}
-	d, _ := c.disassemble(0x1000)
+	d, _ := c.Disassemble(0x1000)
 	t.Logf("%v\n", d)
 }
 
@@ -4577,7 +4577,7 @@ func TestAdcImmediate(t *testing.T) {
 	if c.sr&Carry == Carry {
 		t.Fatalf("carry unexpected status register %0x", c.sr)
 	}
-	d, _ := c.disassemble(0x1000)
+	d, _ := c.Disassemble(0x1000)
 	t.Logf("%v\n", d)
 
 	// test carry
@@ -4597,7 +4597,7 @@ func TestAdcImmediate(t *testing.T) {
 	if c.sr&Carry != Carry {
 		t.Fatalf("carry unexpected status register %0x", c.sr)
 	}
-	d, _ = c.disassemble(0x1000)
+	d, _ = c.Disassemble(0x1000)
 	t.Logf("%v\n", d)
 
 	// test carry over
@@ -4618,7 +4618,7 @@ func TestAdcImmediate(t *testing.T) {
 	if c.sr&Carry == Carry {
 		t.Fatalf("carry unexpected status register %0x", c.sr)
 	}
-	d, _ = c.disassemble(0x1000)
+	d, _ = c.Disassemble(0x1000)
 	t.Logf("%v\n", d)
 
 	// test carry with overflow
@@ -4641,7 +4641,7 @@ func TestAdcImmediate(t *testing.T) {
 	if c.sr&Overflow != Overflow {
 		t.Fatalf("carry unexpected status register %0x", c.sr)
 	}
-	d, _ = c.disassemble(0x1000)
+	d, _ = c.Disassemble(0x1000)
 	t.Logf("%v\n", d)
 
 	// test zero
@@ -4661,7 +4661,7 @@ func TestAdcImmediate(t *testing.T) {
 	if c.sr&Zero != Zero {
 		t.Fatalf("carry unexpected status register %0x", c.sr)
 	}
-	d, _ = c.disassemble(0x1000)
+	d, _ = c.Disassemble(0x1000)
 	t.Logf("%v\n", d)
 
 	// test negative
@@ -4681,7 +4681,7 @@ func TestAdcImmediate(t *testing.T) {
 	if c.sr&Negative != Negative {
 		t.Fatalf("carry unexpected status register %0x", c.sr)
 	}
-	d, _ = c.disassemble(0x1000)
+	d, _ = c.Disassemble(0x1000)
 	t.Logf("%v\n", d)
 
 }
@@ -4705,7 +4705,7 @@ func TestAdcZP(t *testing.T) {
 	if c.sr&Carry == Carry {
 		t.Fatalf("carry unexpected status register %0x", c.sr)
 	}
-	d, _ := c.disassemble(0x1000)
+	d, _ := c.Disassemble(0x1000)
 	t.Logf("%v\n", d)
 }
 
@@ -4725,7 +4725,7 @@ func TestAdcDecimal(t *testing.T) {
 	if c.a != 0x47 {
 		t.Fatalf("unexpected a %x", c.a)
 	}
-	d, _ := c.disassemble(0x1000)
+	d, _ := c.Disassemble(0x1000)
 	t.Logf("%v\n", d)
 }
 
@@ -4752,7 +4752,7 @@ func TestKlausDormann6502(t *testing.T) {
 
 	var instructions uint64
 	for {
-		//d, _ := c.disassemble(c.pc)
+		//d, _ := c.Disassemble(c.pc)
 		//t.Logf("%v\n", d)
 		ExecuteInstruction(c)
 		//fmt.Printf("%v\n", c.snapshot())
