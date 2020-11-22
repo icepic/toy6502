@@ -1142,7 +1142,7 @@ var (
 		// 0xcb - illegal opcode
 		{
 			mnemonic: "SBX",
-			mode:     implied,
+			mode:     immediate,
 			noBytes:  2,
 			noCycles: 2,
 		},
@@ -1797,10 +1797,16 @@ func (c *CPU) sbc(src byte) {
 }
 
 func (c *CPU) sbx(src byte) {
-	c.x = (c.x & c.a) - src
+	var t int16
+	t = int16(c.x & c.a) - int16(src)
+	c.x = byte(t & 0xff)
 	c.evalZ(c.x)
 	c.evalN(c.x)
-	//	c.evalC(c.x)
+	if c.a >= src {
+                c.sr |= Carry
+        } else {
+                c.sr &^= Carry
+        }
 }
 
 
@@ -2477,7 +2483,7 @@ func (c *CPU) snapshot() string {
 
 // disassemble disassembles an instruction at address and returns the
 // instruction and bytes consumed.
-func (c *CPU) disassemble(address uint16) (string, byte) {
+func (c *CPU) Disassemble(address uint16) (string, byte) {
 	o := opcodes[c.memory[address]]
 	switch o.mode {
 	case accumulator:
